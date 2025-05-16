@@ -17,5 +17,4 @@ public interface ProyectoRepository extends JpaRepository<Proyecto, Long> {
     @Query("select p from Proyecto p where p.activo = true")
     List<Proyecto> findByActivoTrue();
 
-
 }
