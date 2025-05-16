@@ -19,9 +19,9 @@ public class Main {
 
 
 	ApplicationContext spring = SpringApplication.run(Main.class, args);
-
+		System.out.println("================");
 	System.out.println("Iniciando spring");
-
+		System.out.println("================");
 	ProyectoRepository proyectoRepository = spring.getBean(ProyectoRepository.class);
 	Proyecto instDeveloper = new Proyecto("InstDeveloper", "Instalación de los requisitos para empezar a programar", LocalDate.of(2025,5,2), true);
 	Proyecto creaWeb = new Proyecto("CreaWeb", "Crear Web nivel Corporativo", LocalDate.of(2025,9,1), false);
@@ -29,7 +29,7 @@ public class Main {
 	proyectoRepository.saveAll(List.of(instDeveloper,creaWeb));
 
 	System.out.println("Creando los proyectos");
-
+		System.out.println("================");
 
 	TareaRepository tareaRepository = spring.getBean(TareaRepository.class);
 	Tarea tarea1 = new Tarea("Revisar portatil","Se ha revisado, para saber si cumple con los requisitos minimos",true,instDeveloper);
@@ -40,61 +40,58 @@ public class Main {
 	// guardando las tareas de una vez
 	tareaRepository.saveAll(List.of(tarea1,tarea2,tarea3,tarea4,tarea5));
 	System.out.println("Creando las tareas");
-
+		System.out.println("================");
 	// Un método derivado para buscar proyectos por nombre
 	String buscaProyecto ="creaweb";
 	List<Proyecto> proyectoEncontrado = proyectoRepository.findByNombreIgnoreCase(buscaProyecto);
 
 	if(proyectoEncontrado.isEmpty()){
-		System.out.println("Proyectos con el nombre " + buscaProyecto + ", no encontrado.");
+		System.out.println("Proyectos con el nombre: " + buscaProyecto + ", no encontrado.");
 	}else {
 		System.out.println("Estos son los proyectos encontrados con el nombre " + buscaProyecto + ":");
 		for(Proyecto proyecto : proyectoEncontrado){
 			System.out.println(" - " + proyecto.getNombre());
 		}
 	}
+		System.out.println("================");
 	// Un método derivado para buscar proyectos por fecha de inicio
 	LocalDate fechaInicio = LocalDate.of(2025,9,1);
 	List<Proyecto> proyectFInicio = proyectoRepository.findByFechainicio(fechaInicio);
 
 	if(proyectFInicio.isEmpty()){
-		System.out.println("Ningun proyecto con la fecha de inicio " + fechaInicio);
+		System.out.println("Ningun proyecto con la fecha de inicio: " + fechaInicio);
 	}else{
 		System.out.println("Estos son los proyecto con la fecha de inicio: " + fechaInicio);
 		for(Proyecto proyecto : proyectFInicio){
 			System.out.println(" - " + proyecto.getNombre() + " " + proyecto.getFechainicio());
 		}
 	}
-
+		System.out.println("================");
 	// Una consulta JPQL que encuentre todos los proyectos activos
-
-
 	List<Proyecto> projectActive = proyectoRepository.findByActivoTrue();
 
 	if(!projectActive.isEmpty()){
-		System.out.println("Estos son los proyectos que están activos");
+		System.out.println("Estos son los proyectos que están activos:");
 
 		for(Proyecto proyecto : projectActive){
 			System.out.println(" - Este proyecto " + proyecto.getNombre() + " está " + proyecto.getActivo());
 		}
 	}
-
+		System.out.println("================");
 	//	Un método derivado para buscar tareas por título
-	String buscaTitulo = "Revisar"; // preguntar a Maria como se haria el like '%revisar%'
+	String buscaTitulo = "Revisar %"; // preguntar a Maria como se haria el like '%revisar%'
 
-	List<Tarea> listaTareas = tareaRepository.findByTituloIgnoreCase(buscaTitulo);
-
+	List<Tarea> listaTareas = tareaRepository.findByTituloLikeIgnoreCase(buscaTitulo);
 	if (!listaTareas.isEmpty()){
-		System.out.println("Estas son las tareas con el titulo " + buscaTitulo);
+		System.out.println("Estas son las tareas con el titulo: " + buscaTitulo);
 		for (Tarea tarea : listaTareas){
 			System.out.println(" - Tarea " + tarea.getTitulo() );
 		}
 	}else{
 		System.out.println("Titulo de la tarea no encontrada.");
 	}
-
+		System.out.println("================");
 	//	Un método derivado para contar cuántas tareas no están completadas
-
 
 	List<Tarea> noCompletadas = tareaRepository.findByCompletadaFalse();
 
@@ -106,7 +103,7 @@ public class Main {
 	}else{
 		System.out.println("Todas las tareas estan completadas.");
 	}
-
+		System.out.println("================");
 	//	Una consulta JPQL que encuentre todas las tareas que pertenezcan a un mismo proyecto
 
 	String project = "instDeveloper" ;
@@ -120,7 +117,7 @@ public class Main {
 	}else{
 		System.out.println("No hay tareas asignadas al proyecto: " + project);
 	}
-
+		System.out.println("================");
 
 
 	}

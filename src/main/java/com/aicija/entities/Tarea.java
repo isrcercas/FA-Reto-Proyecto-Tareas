@@ -8,13 +8,13 @@ public class Tarea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column(length = 100, nullable = false)
-    String titulo;
+    private String titulo;
     @Column(length = 400, nullable = false)
-    String descripcion;
+    private String descripcion;
     @Column(nullable = false)
-    Boolean completada;
+    private Boolean completada;
 
     @ManyToOne
     @JoinColumn(name = "id_proyecto")

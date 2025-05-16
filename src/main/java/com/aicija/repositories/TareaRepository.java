@@ -11,6 +11,9 @@ public interface TareaRepository extends JpaRepository<Tarea, Long> {
     //	Un método derivado para buscar tareas por título
     List<Tarea> findByTituloIgnoreCase(String titulo);
 
+    List<Tarea> findByTituloLikeIgnoreCase(String titulo);
+
+
     //	Un método derivado para contar cuántas tareas no están completadas
 
     List<Tarea> findByCompletadaFalse();

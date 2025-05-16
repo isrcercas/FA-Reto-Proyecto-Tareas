@@ -10,15 +10,15 @@ public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(length = 50, nullable = false)
-    String nombre;
-    String descripcion;
+    private String nombre;
+    private String descripcion;
     @Column(nullable = false)
-    LocalDate fechainicio;
+    private LocalDate fechainicio;
     @Column(nullable = false)
-    Boolean activo;
+    private Boolean activo;
 
     public Proyecto() {}
 
